@@ -53,6 +53,22 @@
                         });
                     }
 
+                   // first
+                 btns[1].onclick = function(){
+
+                // send Ajax 
+                axios({
+
+                    // methond
+                    method:'POST',
+                    //URL
+                    url:"https://oapi.dingtalk.com/robot/send?access_token=72cdb5c4132e1d4da62327fa7d6595d51ac5def2aa8dc7d99c8c7aa834e74e05",
+
+                }).then(response => {
+                    console.log(response);
+                });
+                }
+
                 </script>
                 
                 </div>
