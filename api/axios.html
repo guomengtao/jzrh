@@ -23,6 +23,16 @@
                 <div class="col">
                     name test
                     <button class="btn btn-waning" >Send Post Data</button>
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-light">Light</button>
+                    <button type="button" class="btn btn-dark">Dark</button>
+
+                    <button type="button" class="btn btn-link">Link</button>
                 
                 <script>
                     const btns = document.querySelectorAll("button");
@@ -36,7 +46,7 @@
                             // methond
                             method:'GET',
                             //URL
-                            url:"http://ip-api.com/json/",
+                            url:"https://oapi.dingtalk.com/robot/send?access_token=72cdb5c4132e1d4da62327fa7d6595d51ac5def2aa8dc7d99c8c7aa834e74e05",
 
                         }).then(response => {
                             console.log(response);
