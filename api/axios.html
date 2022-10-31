@@ -45,19 +45,40 @@
 
                             // methond
                             method:'GET',
-                            headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                              },
                             //URL
-                            url:"https://oapi.dingtalk.com/robot/send?access_token=72cdb5c4132e1d4da62327fa7d6595d51ac5def2aa8dc7d99c8c7aa834e74e05",
+                            url:"https://ipapi.co/1.2.3.4/json/",
 
                         }).then(response => {
                             console.log(response);
                         });
                     }
 
-                   // first
-                 btns[1].onclick = function(){
+                // second
+                btns[1].onclick = function(){
+
+                // send Ajax 
+                axios({
+
+                    // methond
+                    method:'POST',
+
+                    //URL
+                    url:"https://ipapi.co/1.2.3.4/json/",
+                    data:{
+                        "msgtype": "text",
+                        "text": {
+                            "content": "我就是我, 是不一 test样的烟火123----与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。"
+                        }
+                    }
+                }).then(response => {
+                    console.log(response);
+                });
+                }
+
+                //https://oapi.dingtalk.com/robot/send?access_token=XXXXXX
+
+                // 003
+                btns[2].onclick = function(){
 
                 // send Ajax 
                 axios({
@@ -106,7 +127,7 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>url for diaocha test with 568
+                    <td>url for diaocha test with 5688
                         <link rel="stylesheet" href=""></td>
                     <td>Otto</td>
                     <td>@mdo</td>
