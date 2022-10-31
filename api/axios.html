@@ -63,7 +63,12 @@
                     method:'POST',
                     //URL
                     url:"https://oapi.dingtalk.com/robot/send?access_token=72cdb5c4132e1d4da62327fa7d6595d51ac5def2aa8dc7d99c8c7aa834e74e05",
-
+                    data:{
+                        "msgtype": "text",
+                        "text": {
+                            "content": "我就是我, 是不一 test样的烟火123----与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。"
+                        }
+                    }
                 }).then(response => {
                     console.log(response);
                 });
