@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>API Data Display</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
-
+  <title>Vue API GET Request</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div id="app">
     <h1>{{ message }}</h1>
-    <p>{{ data }}</p>
+    <p>Name: {{ name }}</p>
+    <p>ID: {{ id }}</p>
+    <p>Email: {{ email }}</p>
   </div>
 
   <script>
     new Vue({
       el: '#app',
       data: {
-        message: '',
-        data: {}
+        name: '',
+        id: '',
+        email: '',
+        message: ''
       },
-      created: function() {
-
-        // 获取URL参数
-        var params = this.$route.query;
-        // 将URL参数赋值给Vue实例的数据属性
-        this.id = params.id;
-        var token = '12';
-        var type = '110';
-        var id = params.id;
-        var url = 'https://tom.rinuo.x10.mx/user/' + '?token=' + token + '&type=' + type + '&id=' + id;
-        
-        fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            this.message = 'API Data';
-            this.data = data;
+      mounted() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const name = params.get('name');
+        axios.get(`https://tom.rinuo.x10.mx/user?name=${name}&id=${id}`)
+          .then(response => {
+            this.message = 'API Response: ' + response.data; // 显示API的原始响应数据
+            this.name = response.data[0].name; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的name属性
+            this.id = response.data[0].id; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
+            this.email = response.data[0].email; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的email属性
+          })
+          .catch(error => {
+            console.error(error);
           });
       }
     });
