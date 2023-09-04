@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>读取API并显示数据</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    #data-container {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="data-container"></div>
+
+  <button id="fetch-data">获取数据</button>
+
+  <script>
+    function fetchData() {
+      axios.get('http://tom.rinuo.x10.mx/user')
+        .then(function (response) {
+          var data = response.data;
+          displayData(data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+
+    function displayData(data) {
+      $('#data-container').empty(); // 清空容器元素的内容
+      $.each(data, function (index, item) {
+        $('#data-container').append('<p>' + item.title + '</p>'); // 添加数据到容器元素
+      });
+    }
+
+    $(document).ready(function () {
+      $('#fetch-data').click(function () {
+        fetchData(); // 加载数据并显示在容器元素中
+      });
+    });
+  </script>
+</body>
+</html>
