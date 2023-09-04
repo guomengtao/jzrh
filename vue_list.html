@@ -3,18 +3,32 @@
 <head>
   <title>Vue API List Data</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 </head>
 <body>
   <div id="app">
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }} - {{ item.description }}
-      </li>
-    </ul>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in items" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td><a :href="'/vue_detail?name=' + item.name + '&id=' + item.id" class="btn btn-primary">查看详情</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <script>
-    // 在这里定义你的Vue实例
     new Vue({
       el: '#app',
       data: {
