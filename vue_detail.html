@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Display</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1>
+    <p>{{ data }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: '',
+        data: {}
+      },
+      created: function() {
+        var token = '12';
+        var type = '110';
+        var id = this.$route.params.id;
+        var url = 'https://tom.rinuo.x10.mx/user/' + '?token=' + token + '&type=' + type + '&id=' + id;
+        
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            this.message = 'API Data';
+            this.data = data;
+          });
+      }
+    });
+  </script>
+</body>
+</html>
