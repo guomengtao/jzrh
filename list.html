@@ -15,7 +15,13 @@
 </head>
 <body>
   <h1>API Data T:</h1>
-  <table id="api-table"></table>
+  <table id="api-table">
+    <tr>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Email</td>
+    </tr>
+  </table>
 
   <script>
     $(document).ready(function() {
@@ -25,8 +31,10 @@
           var row = table.insertRow();
           var idCell = row.insertCell(0);
           var nameCell = row.insertCell(1);
+          var emailCell = row.insertCell(2);
           idCell.innerHTML = item.id;
           nameCell.innerHTML = item.name;
+          emailCell.innerHTML = item.email;
         });
       });
     });
