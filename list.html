@@ -14,12 +14,12 @@
   </style>
 </head>
 <body>
-  <h1>API Data:</h1>
+  <h1>API Data T:</h1>
   <table id="api-table"></table>
 
   <script>
     $(document).ready(function() {
-      $.get("http://tom.rinuo.x10.mx/user", function(data) {
+      $.get("https://tom.rinuo.x10.mx/user", function(data) {
         var table = document.getElementById("api-table");
         $.each(data, function(index, item) {
           var row = table.insertRow();
