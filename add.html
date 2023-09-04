@@ -1,1 +1,19 @@
-https://www.jzrh.cn/api.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Data Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>API Data:</h1>
+    <div id="api-data"></div>
+
+    <script>
+        $(document).ready(function() {
+            $.get("https://tom.rinuo.x10.mx/user_index", function(data) {
+                $("#api-data").html(JSON.stringify(data));
+            });
+        });
+    </script>
+</body>
+</html>
