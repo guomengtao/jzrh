@@ -18,6 +18,42 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8644709060035439"
         crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        function fetchData(page, callback) {
+  axios.get('http://tom.rinuo.x10.mx/user/page' + page)
+    .then(function (response) {
+      var data = response.data;
+      callback(data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+
+function displayData(data, $element) {
+  $element.empty();
+  $.each(data, function (index, item) {
+    $element.append('<p>' + item.title + '</p>');
+  });
+}
+
+function paginate(page, $element) {
+  fetchData(page, function (data) {
+    displayData(data, $element);
+  });
+}
+
+        $(document).ready(function () {
+  var page = 1; // 初始页码为1
+  var $element = $('#data-container'); // 获取容器元素
+  paginate(page, $element); // 加载第一页数据并展示在容器元素中
+});
+
+    </script>
 </head>
 
 <body class="p-3 m-0 border-0 bd-example">
@@ -28,9 +64,7 @@
         <div class="row">
             <div class="col">
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/v0weamgxy24" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
+ 
                 <button type="button" class="btn btn-primary">润滑系统</button>
                 <button type="button" class="btn btn-secondary">润滑泵</button>
                 <button type="button" class="btn btn-success">干油泵</button>
@@ -54,6 +88,9 @@
         <div class="row">
             <div class="col">
 
+                <div id="data-container"></div>
+<button id="prev-page">上一页</button>
+<button id="next-page">下一页</button>
                 <br />
 
 
