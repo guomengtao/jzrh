@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Display</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Data:</h1>
+  <table id="api-table"></table>
+
+  <script>
+    $(document).ready(function() {
+      var apiUrl = "https://api.example.com/list"; // API列表接口的URL
+      var detailsApiUrl = "https://api.example.com/details/{id}"; // 用户详情接口的URL，其中的{id}是占位符
+
+      // 获取URL中的id参数
+      var id = getUrlParameter('id');
+      console.log(id);
+
+      $.get(apiUrl, function(data) {
+        var table = document.getElementById("api-table");
+        $.each(data, function(index, item) {
+          var row = table.insertRow();
+          var idCell = row.insertCell(0);
+          var nameCell = row.insertCell(1);
+          var detailsCell = row.insertCell(2);
+          idCell.innerHTML = item.id;
+          nameCell.innerHTML = "<a href='" + detailsApiUrl.replace("{id}", item.id) + "'>" + item.name + "</a>";
+          detailsCell.innerHTML = "<a href='" + detailsApiUrl.replace("{id}", item.id) + "'>查看详情</a>";
+        });
+      });
+    });
+
+    // 获取URL中指定参数的值
+    function getUrlParameter(name) {
+      var searchString = window.location.search.slice(1);
+      var pairs = searchString.split('&');
+      for (var i = 0; i < pairs.length; i++) {
+        var keyValuePair = pairs[i].split('=');
+        if (keyValuePair[0] === name) {
+          return keyValuePair[1];
+        }
+      }
+      return null;
+    }
+  </script>
+</body>
+</html>
