@@ -31,7 +31,7 @@
     function displayData(data) {
       $('#data-container').empty(); // 清空容器元素的内容
       $.each(data, function (index, item) {
-        $('#data-container').append('<p>' + item.title + '</p>'); // 添加数据到容器元素
+        $('#data-container').append('<p>' + item.id + '</p>'); // 添加数据到容器元素
       });
     }
 
