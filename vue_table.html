@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue API List Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in items" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        items: []
+      },
+      created() {
+        axios.get('https://api.example.com/items') // 替换为你的API地址
+          .then(response => {
+            this.items = response.data;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+    });
+  </script>
+</body>
+</html>
