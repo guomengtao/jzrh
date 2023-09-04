@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>API Data Display</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Data:</h1>
+  <table id="api-table"></table>
+
+  <script>
+    $(document).ready(function() {
+      var detailsApiUrl = "https://tom.rinuo.x10.mx/user_detail"; // 替换为实际的详情API URL
+
+      $.get("https://tom.rinuo.x10.mx/user", function(data) {
+        var table = document.getElementById("api-table");
+        $.each(data, function(index, item) {
+          var row = table.insertRow();
+          var idCell = row.insertCell(0);
+          var nameCell = row.insertCell(1);
+          var detailsCell = row.insertCell(2);
+          idCell.innerHTML = item.id;
+          nameCell.innerHTML = "<a href='" + detailsApiUrl + "/" + item.id + "'>" + item.name + "</a>";
+          detailsCell.innerHTML = "<a href='" + detailsApiUrl + "/" + item.id + "'>查看详情</a>";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
