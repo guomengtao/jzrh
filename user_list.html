@@ -29,7 +29,7 @@
           var detailsCell = row.insertCell(2);
           idCell.innerHTML = item.id;
           nameCell.innerHTML = "<a href='" + detailsApiUrl + "/" + item.id + "'>" + item.name + "</a>";
-          detailsCell.innerHTML = "<a href='" + detailsApiUrl + "/" + item.id + "'>查看详情</a>";
+          detailsCell.innerHTML = "<a href='" + detailsApiUrl + "/?id=" + item.id + "'>查看详情</a>";
         });
       });
     });
