@@ -20,8 +20,8 @@
       <tbody>
         <tr v-for="item in items" :key="item.id">
           <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.email }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.cotent }}</td>
           <td><a :href="'/vue_detail?name=' + item.name + '&id=' + item.id" class="btn btn-primary">查看详情</a></td>
         </tr>
       </tbody>
