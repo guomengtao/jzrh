@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue + Bootstrap 5 Post Request</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.8.2/dist/css/bootstrap.min.css" integrity="sha384-代表大会乐意eUdK2tP/g9愕onOrD/J9GjN47V6zRvY4HPyuSJME1CI9xN7issf7jw" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="submitForm">
+      <div class="form-group">
+        <label for="title">标题</label>
+        <input type="text" class="form-control" id="title" v-model="formData.title">
+      </div>
+      <div class="form-group">
+        <label for="content">内容</label>
+        <textarea class="form-control" id="content" v-model="formData.content"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        formData: {
+          title: '',
+          content: ''
+        }
+      },
+      methods: {
+        submitForm() {
+          axios.post('https://tom.rinuo.x10.mx/user', this.formData)
+            .then(response => {
+              if (response.data.code === 200) {
+                this.$emit('show-success-toast', response.data.msg);
+              } else {
+                console.error('请求失败:', response);
+              }
+            })
+            .catch(error => {
+              console.error('请求错误:', error);
+            });
+        }
+      }
+    });
+  </script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const toast = new bootstrap.Toast('show');
+      document.addEventListener('show-success-toast', (event) => {
+        const toastBody = document.createElement('div');
+        toastBody.classList.add('toast-body');
+        toastBody.innerHTML = event.detail; // 来自 Vue 组件的提示信息数据
+        toast.body = toastBody; // 设置提示信息的正文内容
+        toast.show(); // 显示提示信息
+      });
+    });
+  </script>
+</body>
+</html>
