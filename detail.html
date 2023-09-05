@@ -1,44 +1,43 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>读取API并显示数据</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Vue API GET Request</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <style>
-    #data-container {
-      margin: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 </head>
 <body>
-  <div id="data-container"></div>
-
-  <button id="fetch-data">获取数据</button> Good
+  <div id="app">
+    <h1>Name: {{ title }}</h1>
+    <p>Name: {{ title }}</p>
+    <p>ID: {{ id }}</p>
+    <p>Email: {{ content }}</p>
+  </div>
 
   <script>
-    function fetchData() {
-      axios.get('https://tom.rinuo.x10.mx/user_index')
-        .then(function (response) {
-          var data = response.data;
-          displayData(data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
-
-    function displayData(data) {
-      $('#data-container').empty(); // 清空容器元素的内容
-      $.each(data, function (index, item) {
-        $('#data-container').append('<p>' + item.id + '</p>'); // 添加数据到容器元素
-      });
-    }
-
-    $(document).ready(function () {
-      $('#fetch-data').click(function () {
-        fetchData(); // 加载数据并显示在容器元素中
-      });
+    new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        id: '',
+        email: '',
+        message: ''
+      },
+      mounted() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const name = params.get('name');
+        axios.get(`https://tom.rinuo.x10.mx/user?name=${name}&id=${id}`)
+          .then(response => {
+            this.message = 'API Response: ' + response.data; // 显示API的原始响应数据
+            this.title = response.data[0].title; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的name属性
+            this.id = response.data[0].id; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
+            this.console = response.data[0].content; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的email属性
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
     });
   </script>
 </body>
