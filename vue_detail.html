@@ -29,6 +29,7 @@
         axios.get(`https://tom.rinuo.x10.mx/user?name=${name}&id=${id}`)
           .then(response => {
             this.message = 'API Response: ' + response.data; // 显示API的原始响应数据
+            console.log(response.data);
             this.name = response.data[0].name; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的name属性
             this.id = response.data[0].id; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
             this.email = response.data[0].email; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的email属性
