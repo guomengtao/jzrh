@@ -41,7 +41,7 @@
       methods: {
         submitForm(event) {
           event.preventDefault();
-          axios.post('https://tom.rinuo.x10.mx/user_add', { title: this.title, content: this.content })
+          axios.post('https://tom.rinuo.x10.mx/user', { title: this.title, content: this.content })
             .then(response => {
               this.showAlert = true;
               setTimeout(() => {
