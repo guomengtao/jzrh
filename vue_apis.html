@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue API GET Request</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-for="(data1, index1) in dataList1" :key="index1">
+      <h2>{{ data1.name }}</h2>
+      <p>{{ data1.id }}</p>
+      <p>{{ data1.email }}</p>
+    </div>
+    <div v-for="(data2, index2) in dataList2" :key="index2">
+      <h2>{{ data2.name }}</h2>
+      <p>{{ data2.id }}</p>
+      <p>{{ data2.email }}</p>
+    </div>
+    <div v-for="(data3, index3) in dataList3" :key="index3">
+      <h2>{{ data3.name }}</h2>
+      <p>{{ data3.id }}</p>
+      <p>{{ data3.email }}</p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        dataList1: [],
+        dataList2: [],
+        dataList3: []
+      },
+      mounted() {
+        axios.all([
+          this.fetchData1(),
+          this.fetchData2(),
+          this.fetchData3()
+        ])
+        .then(axios.spread((data1, data2, data3) => {
+          this.dataList1 = data1.data;
+          this.dataList2 = data2.data;
+          this.dataList3 = data3.data;
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+      },
+      methods: {
+        fetchData1() {
+          return axios.get('https://tom.rinuo.x10.mx/user');
+        },
+        fetchData2() {
+          return axios.get('https://tom.rinuo.x10.mx/user');
+        },
+        fetchData3() {
+          return axios.get('https://tom.rinuo.x10.mx/user');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
