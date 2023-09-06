@@ -19,7 +19,7 @@
       <p>正在提交...</p>
     </div>
     <div v-if="isSuccess">
-      <p>提交成功！{{ all }} - {{ msg }}</p>
+      <p>提交成功！{{ all }} - {{ msg }} -{{ msg }}</p>
     </div>
     <div v-if="isFailure">
       <p>提交失败！{{ all }} - {{ msg }} </p>
@@ -40,8 +40,8 @@
         isSuccess: false,
         isFailure: false,
         timer: null,
-        all: null,
-        msg: null,
+        all: '',
+        msg: '',
       },
       methods: {
         async submitForm() {
