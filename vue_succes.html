@@ -59,6 +59,7 @@
             if (response.status === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
               this.isLoading = false;
               this.isSuccess = true;
+              this.msg = response.data.msg;
               this.timer = setTimeout(() => {
                 this.isSuccess = false;
                 this.timer = null;
