@@ -56,7 +56,7 @@
             const response = await axios.post('https://tom.rinuo.x10.mx/user', this.formData);
             console.log(response); // 可以在控制台看到API返回的结果，如果需要处理返回的数据，可以在这里进行。
             console.log(response.data.msg);
-            if (response.data.msg === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
+            if (response.data.code === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
               this.isLoading = false;
               this.isSuccess = true;
               this.msg = response.data.msg;
@@ -70,6 +70,7 @@
             } else { // 如果API的响应状态码不是200，则显示失败消息。
               this.isLoading = false;
               this.isFailure = true;
+              this.msg = response.data.msg;
               this.timer = setTimeout(() => {
                 this.isFailure = false;
                 this.timer = null;
