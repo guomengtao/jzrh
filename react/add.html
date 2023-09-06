@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>React POST请求示例</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script type="text/babel">
+class FormComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      content: '',
+    };
+  }
+
+  handleTitleChange = (event) => {
+    this.setState({ title: event.target.value });
+  }
+
+  handleContentChange = (event) => {
+    this.setState({ content: event.target.value });
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const apiUrl = 'https://tom.rinuo.x10.mx/user'; // 替换为你的API URL
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title: this.state.title, content: this.state.content }),
+      });
+
+      if (response.status === 200) {
+        alert('提交成功！');
+      } else {
+        alert('提交失败！');
+      }
+    } catch (error) {
+      alert('提交失败！');
+    }
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label for="title">标题:</label>
+        <input type="text" id="title" value={this.state.title} onChange={this.handleTitleChange} />
+        <br />
+        <label for="content">内容:</label>
+        <textarea id="content" value={this.state.content} onChange={this.handleContentChange} />
+        <br />
+        <button type="submit">提交</button>
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(<FormComponent />, document.getElementById('root'));
+  </script>
+</body>
+</html>
