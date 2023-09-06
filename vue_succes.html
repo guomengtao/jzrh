@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Vue + Bootstrap 5 Post Request</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <title>Vue POST请求示例</title>
 </head>
 <body>
   <div id="app">
     <form @submit.prevent="submitForm">
-      <div class="form-group">
-        <label for="title">标题</label>
-        <input type="text" class="form-control" id="title" v-model="formData.title">
-      </div>
-      <div class="form-group">
-        <label for="content">内容</label>
-        <textarea class="form-control" id="content" v-model="formData.content"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">提交</button>
+      <label for="title">标题:</label>
+      <input type="text" id="title" v-model="formData.title">
+      <br>
+      <label for="content">内容:</label>
+      <textarea id="content" v-model="formData.content"></textarea>
+      <br>
+      <button type="submit">提交</button>
     </form>
+    <div v-if="isLoading">
+      <p>正在提交...</p>
+    </div>
+    <div v-if="isSuccess">
+      <p>提交成功！</p>
+    </div>
+    <div v-if="isFailure">
+      <p>提交失败！</p>
+    </div>
   </div>
 
+  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios@0.21.1"></script>
   <script>
     new Vue({
       el: '#app',
@@ -31,36 +35,49 @@
         formData: {
           title: '',
           content: ''
-        }
+        },
+        isLoading: false,
+        isSuccess: false,
+        isFailure: false,
+        timer: null,
       },
       methods: {
-        submitForm() {
-          axios.post('https://tom.rinuo.x10.mx/user', this.formData)
-            .then(response => {
-              if (response.data.code === 200) {
-                this.$emit('show-success-toast', response.data.msg);
-              } else {
-                console.error('请求失败:', response);
-              }
-            })
-            .catch(error => {
-              console.error('请求错误:', error);
-            });
+        async submitForm() {
+          this.isLoading = true;
+          this.isSuccess = false;
+          this.isFailure = false;
+          this.timer = setTimeout(() => {
+            this.isLoading = false;
+            this.timer = null;
+          }, 2000); // 提交后立即显示加载消息，这里设置为2秒是为了测试能看到效果，实际应用中可以根据需要调整。
+          try {
+            const response = await axios.post('https://tom.rinuo.x10.mx/user', this.formData);
+            console.log(response); // 可以在控制台看到API返回的结果，如果需要处理返回的数据，可以在这里进行。
+            if (response.status === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
+              this.isLoading = false;
+              this.isSuccess = true;
+              this.timer = setTimeout(() => {
+                this.isSuccess = false;
+                this.timer = null;
+              }, 9000); // 9秒后消失。
+            } else { // 如果API的响应状态码不是200，则显示失败消息。
+              this.isLoading = false;
+              this.isFailure = true;
+              this.timer = setTimeout(() => {
+                this.isFailure = false;
+                this.timer = null;
+              }, 8000); // 8秒后消失。
+            }
+          } catch (error) {
+            this.isLoading = false;
+            this.isFailure = true;
+            this.timer = setTimeout(() => {
+              this.isFailure = false;
+              this.timer = null;
+            }, 8000); // 8秒后消失。
+          }
         }
       }
-    });
-  </script>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-      const toast = new bootstrap.Toast('show');
-      document.addEventListener('show-success-toast', (event) => {
-        const toastBody = document.createElement('div');
-        toastBody.classList.add('toast-body');
-        toastBody.innerHTML = event.detail; // 来自 Vue 组件的提示信息数据
-        toast.body = toastBody; // 设置提示信息的正文内容
-        toast.show(); // 显示提示信息
-      });
     });
   </script>
 </body>
