@@ -10,7 +10,7 @@
       <label for="title">标题:</label>
       <input type="text" id="title" v-model="formData.title">
       <br>
-      <label for="content">内容:{{ msg }}</label>
+      <label for="content">内容:</label>
       <textarea id="content" v-model="formData.content"></textarea>
       <br>
       <button type="submit">提交</button>
@@ -19,10 +19,10 @@
       <p>正在提交...</p>
     </div>
     <div v-if="isSuccess">
-      <p>提交成功！{{ all }} - {{ msg }} -{{ msg }}</p>
+      <p>提交成功！ -{{ msg }}</p>
     </div>
     <div v-if="isFailure">
-      <p>提交失败！{{ all }} - {{ msg }} </p>
+      <p>提交失败！ { msg }} </p>
     </div>
   </div>
 
@@ -56,7 +56,7 @@
             const response = await axios.post('https://tom.rinuo.x10.mx/user', this.formData);
             console.log(response); // 可以在控制台看到API返回的结果，如果需要处理返回的数据，可以在这里进行。
             console.log(response.data.msg);
-            if (response.status === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
+            if (response.data.msg === 200) { // 检查API的响应状态码是否为200，如果是则显示成功消息。
               this.isLoading = false;
               this.isSuccess = true;
               this.msg = response.data.msg;
