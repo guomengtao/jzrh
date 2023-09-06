@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas API 自由裁剪上传到图片</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="fileInput" accept="image/*">
+  <canvas id="canvas"></canvas>
+  <script>
+    window.onload = function() {
+      const canvas = document.getElementById('canvas');
+      const fileInput = document.getElementById('fileInput');
+      const context = canvas.getContext('2d');
+      let isDrawing = false;
+      let startX, startY, endX, endY;
+
+      fileInput.addEventListener('change', handleFileSelect);
+
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            context.drawImage(img, 0, 0, img.width, img.height);
+            resetSelection();
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mouseup', stopDrawing);
+          };
+          img.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      function startDrawing(event) {
+        isDrawing = true;
+        startX = event.pageX - canvas.offsetLeft;
+        startY = event.pageY - canvas.offsetTop;
+      }
+
+      function stopDrawing() {
+        isDrawing = false;
+        endX = event.pageX - canvas.offsetLeft;
+        endY = event.pageY - canvas.offsetTop;
+        cropImage(canvas);
+        canvas.removeEventListener('mousedown', startDrawing);
+        canvas.removeEventListener('mouseup', stopDrawing);
+      }
+
+      function resetSelection() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img, 0, 0, img.width, img.height);
+      }
+
+      function cropImage(canvas) {
+        const imageData = context.getImageData(startX, startY, endX - startX, endY - startY);
+        const croppedCanvas = document.createElement('canvas');
+        croppedCanvas.width = endX - startX;
+        croppedCanvas.height = endY - startY;
+        const croppedContext = croppedCanvas.getContext('2d');
+        croppedContext.putImageData(imageData, 0, 0);
+        const croppedImage = croppedCanvas.toDataURL('image/jpeg', 1.0); // 将裁剪后的canvas转换为图片，这里使用了JPEG格式，可以根据需要调整格式和压缩质量参数
+        document.body.appendChild(document.createElement('img')).src = croppedImage; // 在页面上添加一个img元素并设置其src为裁剪后的图片的DataURL
+      }
+    };
+  </script>
+</body>
+</html>
