@@ -60,6 +60,7 @@
               this.isLoading = false;
               this.isSuccess = true;
               this.msg = response.data.msg;
+              this.formData.title = '';
               this.timer = setTimeout(() => {
                 this.isSuccess = false;
                 this.timer = null;
