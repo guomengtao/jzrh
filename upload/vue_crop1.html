@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Cropper Demo</title>
+  <style>
+    /* Add your CSS styles here */
+    .cropper-container {
+      width: 400px;
+      height: 400px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="file" @change="handleFileUpload">
+    <vue-cropper ref="cropper" :src="imageUrl" :crop-width="cropWidth" :crop-height="cropHeight"></vue-cropper>
+    <button @click="cropImage">裁剪图片</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-cropper"></script>
+
+  <script>
+    Vue.component('vue-cropper', VueCropper);
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          imageUrl: '',
+          cropWidth: 200, // 裁剪后的宽度
+          cropHeight: 200, // 裁剪后的高度
+        }
+      },
+      methods: {
+        handleFileUpload(event) {
+          const file = event.target.files[0]
+          this.imageUrl = URL.createObjectURL(file)
+        },
+        cropImage() {
+          this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+            // 在这里处理裁剪后的图片数据，例如上传到服务器或下载到本地
+            // blob 是裁剪后的图片数据
+          })
+        }
+      }
+    })
+  </script>
+</body>
+</html>
