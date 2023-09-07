@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Cropper</title>
+  <style>
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <template id="cropper-template">
+    <div>
+      <img id="image" :src="https://www.jzrh.cn/images/runhuabeng.jpeg" alt="Image to crop">
+      <canvas id="canvas"></canvas>
+    </div>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cropperjs"></script>
+  <script>
+    Vue.component('cropper', {
+      template: '#cropper-template',
+      data() {
+        return {
+          imageUrl: 'path/to/your/image.jpg',
+          cropper: null,
+        };
+      },
+      mounted() {
+        this.cropper = new Cropper(this.$refs.image, {
+          aspectRatio: 16 / 9,
+          preview: this.$refs.canvas,
+        });
+      },
+    });
+
+    new Vue({
+      el: '#app',
+    });
+  </script>
+</body>
+</html>
