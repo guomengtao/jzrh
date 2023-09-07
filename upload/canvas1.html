@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Popup Screenshot Demo</title>
+  <style>
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #canvas {
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="openPopup()">Open Popup</button>
+
+  <div id="popup">
+    <div id="canvas">
+      <canvas id="screenshotCanvas"></canvas>
+      <button onclick="takeScreenshot()">Take Screenshot</button>
+      <input type="number" id="x" value="100" min="0">
+      <input type="number" id="y" value="100" min="0">
+      <input type="number" id="width" value="200" min="1">
+      <input type="number" id="height" value="200" min="1">
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function takeScreenshot() {
+      const x = parseInt(document.getElementById('x').value);
+      const y = parseInt(document.getElementById('y').value);
+      const width = parseInt(document.getElementById('width').value);
+      const height = parseInt(document.getElementById('height').value);
+      const canvas = document.getElementById('screenshotCanvas');
+      const context = canvas.getContext('2d');
+      const imageData = context.getImageData(x, y, width, height);
+      canvas.width = width;
+      canvas.height = height;
+      context.putImageData(imageData, 0, 0);
+      const dataUrl = canvas.toDataURL();
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'screenshot.png';
+      link.click();
+    }
+  </script>
+</body>
+</html>
