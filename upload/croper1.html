@@ -49,110 +49,6 @@
     var inputFile = document.getElementById('file-upload');
     var modal = document.getElementById('myModal');
 
-    inputFile.addEventListener('change', function() {
-      if (inputFile.files && inputFile.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          var image = new Image();
-          image.src = e.target.result;
-
-          image.onload = function() {
-            modal.style.display = "block";
-            
-            var cropperContainer = document.getElementById('cropper-container');
-            cropperContainer.innerHTML = '';
-            cropperContainer.appendChild(image);
-            
-            cropper = new Cropper(image, {
-              aspectRatio: 800 / 600,
-              viewMode: 2,
-            });
-          };
-        };
-
-        reader.readAsDataURL(inputFile.files[0]);
-      }
-    });
-
-    function closeCropPopup() {
-      modal.style.display = "none";
-      cropper.destroy();
-    }
-
-    function cropImage() {
-      var croppedImage = cropper.getCroppedCanvas({
-        width: 80,
-        height: 60
-      });
-
-      // Convert canvas data to data URL with specified quality level
-      var qualityLevel = 0.7; // Adjust the quality level as desired
-      var resizedDataUrl = croppedImage.toDataURL('image/jpeg', qualityLevel);
-
-      // Display the resized image in the image preview area
-      imagePreview.innerHTML = '';
-      var previewImage = new Image();
-      previewImage.src = resizedDataUrl;
-      imagePreview.appendChild(previewImage);
-
-      closeCropPopup();
-    }
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Images Crop Popup</title>
-  <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.css">
-  <style>
-    .cropper-container {
-      width: 100%;
-      height: 400px;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 600px;
-    }
-  </style>
-</head>
-<body>
-  <input id="file-upload" type="file">
-
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <div id="cropper-container" class="cropper-container"></div>
-      <button onclick="cropImage()">Crop</button>
-      <button onclick="closeCropPopup()">Close</button>
-    </div>
-  </div>
-  
-  <div id="image-preview" class="image-preview"></div>
-
-  <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
-  <script>
-    var cropper;
-    var imagePreview = document.getElementById('image-preview');
-    var inputFile = document.getElementById('file-upload');
-    var modal = document.getElementById('myModal');
-
     inputFile.addEventListener('click', function() {
       if (inputFile.files && inputFile.files[0]) {
         var reader = new FileReader();
@@ -203,7 +99,7 @@
       closeCropPopup();
     }
   </script>
-  123
+  123345
 </body>
 </html>
 
