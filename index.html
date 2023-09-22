@@ -129,7 +129,14 @@
           items: []
         },
         created() {
-          axios.get('https://tom.rinuo.x10.mx/user') // 替换为你的API地址
+          axios.get('https://tom.rinuo.x10.mx/user',
+          {
+        params: {
+          domain: 'www.jzrh.cn',
+          age: 15,
+          page: 3,
+        },
+      }) // 替换为你的API地址
             .then(response => {
               this.items = response.data;
             })
@@ -147,7 +154,8 @@
     data: {
       formData: {
         title: '',
-        content: ''
+        content: '',
+        domain:'www.jzrh.cn'
       },
       isLoading: false,
       isSuccess: false,
