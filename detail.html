@@ -13,7 +13,7 @@
     <p>ID: {{ id }}</p>
     <p>Content: {{ content }}</p>
     <p>Created_at: {{ created_at }}</p>
-
+    <p>Domain: {{ domain }}</p>
 
   </div>
 
@@ -37,6 +37,7 @@
             this.id = response.data[0].id; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
             this.created_at = response.data[0].created_at; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
             this.content = response.data[0].content; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
+            this.domain = response.data[0].domain; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的id属性
             this.console = response.data[0].content; // 假设返回的数据是一个数组，并且我们只关心第一条数据中的email属性
           })
           .catch(error => {
