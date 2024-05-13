@@ -40,6 +40,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <img src="" id="modalImage" class="img-fluid">
+          <p id="modalDescription" class="text-center mt-2"></p>  <!-- 产品描述 -->
         </div>
       </div>
     </div>
@@ -58,6 +59,7 @@
       img.setAttribute('data-bs-target', '#imageModal'); // 显示模态框
       img.addEventListener('click', function() {
         document.getElementById('modalImage').src = this.src; // 点击图片后在模态框中显示放大的图片
+        document.getElementById('modalDescription').innerText = productDescriptions[i % 4];  // 显示产品描述
       });
       
       var col = document.createElement('div');
