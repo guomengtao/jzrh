@@ -1,0 +1,63 @@
+body {
+    max-width: 1100px;
+    margin: 0 auto;
+   
+    background-color: white;
+}
+.navigation {
+    margin-top: 20px;
+    background-color: gray;
+    width: 100%;
+ 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+  /* 定义旋转效果的CSS类 */
+  .rotate-effect {
+    transition: transform 0.5s ease-in-out;
+}
+
+.rotate-effect:hover {
+    transform: rotate(360deg);
+}
+#logo_bg {
+    background-image: url('images/ind_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#foot_bg {
+    background-image: url('images/ind_2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+a {
+    color: white; /* 白色文字 */
+    background-color: gray; /* 灰色背景 */
+    text-decoration: none; /* 去掉下划线 */
+}
+.form-control {
+    max-width: 400px; /* 设置搜索框的最大宽度 */
+}
+.search-form-container {
+    display: flex;
+    justify-content: center; /* 使搜索框居中 */
+}
+/* 添加的样式 */
+.white-text {
+    color: white; /* 设置文字颜色为白色 */
+}
+.input-group .form-control {
+    margin-right: 0; /* 取消搜索框和按钮之间的间隔 */
+}
+.input-group .btn {
+    margin-left: 0; /* 取消搜索框和按钮之间的间隔 */
+}
