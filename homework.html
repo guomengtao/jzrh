@@ -1,119 +1,110 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品展示</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .product-img {
-      width: 200px; /* 设置图片的宽度 */
-      height: 200px; /* 设置图片的高度 */
-      object-fit: cover; /* 图片填充方式 */
-      margin: 5px; /* 设置图片之间的间距 */
-      cursor: pointer; /* 鼠标指针样式 */
-    }
-    .product-description {
-      text-align: center; /* 居中文本 */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优生活</title>
+    <!-- 引入Bootstrap的CSS文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
- 
- <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="row-fluid">
-				<div class="span6">
-					<p>
-						<img alt="" src="https://www.jzrh.cn/images/logo_1.png" />
-					</p>
-				</div>
-				<div class="span6">
-					<p>
-						<strong>新房 二手房 租房 楼讯 经纪人 登录|注册</strong>
-					</p>
-				</div>
-			</div>
-			<h1 class="text-center">
-				打造你的优质生活
-			</h1>
-			<h3 class="text-center">
-				<form class="form-search">
-					<input class="input-medium search-query" type="text" /><button class="btn" type="submit">开始找房</button>
-				</form>
-			</h3> <span class="badge">1</span>
-			<p class="text-center">
-				今日新增出租信息234条二手房真实房源889套 在售新楼盘112个
-			</p>
-			<div class="row-fluid">
-				<div class="span4">
-					<p class="text-center">
-						<img alt="" src="https://www.jzrh.cn/images/icon_1.png" />
-					</p>
-					<p class="text-center">
-						<strong>找出租</strong>
-					</p>
-					<p class="text-center">
-						真实出租房源，优生活承诺真实房源所见即真
-					</p>
-				</div>
-				<div class="span4">
-					<p class="text-center">
-						<img alt="" src="https://www.jzrh.cn/images/icon_2.png" />
-					</p>
-					<p class="text-center">
-						<strong>地图找房</strong>
-					</p>
-					<p class="text-center">
-						为您精准定位，位置周边配套设施一览无余
-					</p>
-				</div>
-				<div class="span4">
-					<p class="text-center">
-						<img alt="" src="https://www.jzrh.cn/images/icon_3.png" />
-					</p>
-					<p class="text-center">
-						<strong>地铁找房</strong>
-					</p>
-					<p class="text-center">
-						房源紧邻地铁站，交通出行更方便说走就走
-					</p>
-				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="row-fluid">
-						<div class="span6">
-							<p class="text-left">
-							</p>
-							<h1>
-								优生活在线
-							</h1><br /> 集二手、新房、租房功能于一体，每天发布海量新房源，让您随时随地任性<br /> 找房!在线咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数<br /> 据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多!
-							
-						</div>
-						<div class="span6">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span6">
-					<p class="text-left">
-						了解优生活 联系我们 加入我们 隐私声明 网站地图 友情链接 经纪人登录
-					</p><hr />
-					<p class="text-left">
-						北京优生活房地产经纪有限公司<br /> 4008-220-220(9:00-24:00)<br /> 网络经营许可证京CP备11024601号-12<br /> ©Copyright©2010-2017优生活Ulift.com版权所有
-					</p>
-				</div>
-				<div class="span6">
-					<p>
-						客服热线<br /> 4008-220-220(9:00-24:00)
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <p>
+                            <img alt="" src="https://www.jzrh.cn/images/logo_1.png" />
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p>
+                            <strong>新房 二手房 租房 楼讯 经纪人 登录|注册</strong>
+                        </p>
+                    </div>
+                </div>
+                <h1 class="text-center">
+                    打造你的优质生活
+                </h1>
+                <h3 class="text-center">
+                    <form class="form-search">
+                        <input class="form-control me-2" type="search" placeholder="搜索" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">开始找房</button>
+                    </form>
+                </h3>
+                <p class="text-center">
+                    今日新增出租信息234条二手房真实房源889套 在售新楼盘112个
+                </p> <span class="badge bg-primary">1</span>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-center">
+                            <img alt="" src="https://www.jzrh.cn/images/icon_1.png" />
+                        </p>
+                        <p class="text-center">
+                            <strong>找出租</strong>
+                        </p>
+                        <p class="text-center">
+                            真实出租房源，优生活承诺真实房源所见即真
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-center">
+                            <img alt="" src="https://www.jzrh.cn/images/icon_2.png" />
+                        </p>
+                        <p class="text-center">
+                            <strong>地图找房</strong>
+                        </p>
+                        <p class="text-center">
+                            为您精准定位，位置周边配套设施一览无余
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-center">
+                            <img alt="" src="https://www.jzrh.cn/images/icon_3.png" />
+                        </p>
+                        <p class="text-center">
+                            <strong>地铁找房</strong>
+                        </p>
+                        <p class="text-center">
+                            房源紧邻地铁站，交通出行更方便说走就走
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="text-left">
+                                </p>
+                                <h1>
+                                    优生活在线
+                                </h1><br /> 集二手、新房、租房功能于一体，每天发布海量新房源，让您随时随地任性<br /> 找房!在线咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数<br /> 据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多!
+                                
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="text-left">
+                            了解优生活 联系我们 加入我们 隐私声明 网站地图 友情链接 经纪人登录
+                        </p><hr />
+                        <p class="text-left">
+                            北京优生活房地产经纪有限公司<br /> 4008-220-220(9:00-24:00)<br /> 网络经营许可证京CP备11024601号-12<br /> ©Copyright©2010-2017优生活Ulift.com版权所有
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p>
+                            客服热线<br /> 4008-220-220(9:00-24:00)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 引入Bootstrap的JavaScript文件和Popper.js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
